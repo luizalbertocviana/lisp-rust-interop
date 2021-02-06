@@ -8,7 +8,6 @@ pub extern "C" fn hello() -> *const u8 {
     "hello from rust\0".as_ptr()
 }
 
-#[repr(C)]
 pub struct Point {
     x: i64,
     y: i64,
@@ -27,8 +26,8 @@ impl Point {
 }
 
 #[no_mangle]
-pub extern "C" fn new_point(x: i64, y: i64) -> *const Point {
-    &Point::new(x, y)
+pub extern "C" fn new_point(x: i64, y: i64) -> *mut Point {
+    Box::into_raw(Box::new(Point::new(x, y)))
 }
 
 #[no_mangle]
