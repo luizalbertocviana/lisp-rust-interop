@@ -31,6 +31,15 @@ pub extern "C" fn new_point(x: i64, y: i64) -> *mut Point {
 }
 
 #[no_mangle]
+pub fn delete_point(p: *mut Point) {
+    if !p.is_null() {
+        unsafe {
+            Box::from_raw(p);
+        }
+    }
+}
+
+#[no_mangle]
 pub extern "C" fn get_x(p: *const Point) -> i64 {
     unsafe {
         p.as_ref().expect("invalid pointer").get_x()
