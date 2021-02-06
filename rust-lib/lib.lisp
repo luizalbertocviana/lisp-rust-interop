@@ -1,5 +1,6 @@
 (defpackage :lib
-  (:use :common-lisp :sb-alien))
+  (:use :common-lisp :sb-alien)
+  (:export :new-point :delete-point :with-point :get-x :get-y))
 
 (in-package :lib)
 
